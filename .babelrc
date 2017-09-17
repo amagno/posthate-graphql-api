@@ -1,0 +1,14 @@
+{
+    "presets": [
+        "env"
+    ],
+    "plugins": [
+        "babel-plugin-inline-import",
+        [
+            "transform-runtime", {
+                "polyfill": false,
+                "regenerator": true
+            }
+        ]
+    ]
+}

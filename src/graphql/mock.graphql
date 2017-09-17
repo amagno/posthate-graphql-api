@@ -1,0 +1,55 @@
+type Query {
+    users: [User]
+    user: User
+    posts: [Post]
+}
+type Mutation {
+    addUser(input: UserInput): Authenticate
+    getUser(token: String!): User
+    login(input: LoginInput): Authenticate
+}
+type User {
+    id: ID!
+    name: String
+    email: String
+    password: String
+}
+input UserInput {
+    name: String!
+    email: String!
+    password: String!
+}
+input LoginInput {
+    email: String!
+    password: String!
+}
+interface Status {
+    error: Boolean!
+    msg: String
+}
+type Authenticate implements Status {
+    token: String
+    user: User
+    error: Boolean!
+    msg: String
+}
+type Post {
+    id: ID!
+    title: String
+    content: String
+    likes: Int
+    dislikes: Int
+    user: User
+    comments: [Comment]
+    tags: [Tag]
+}
+type Comment {
+    id: ID!
+    content: String,
+    user: User
+}
+type Tag {
+    id: ID!
+    name: String!
+    posts: [Post]
+}
